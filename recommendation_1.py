@@ -90,9 +90,6 @@ def word_to_vec(column_name='genres'):
         zero_vector = np.zeros(shape=object_num)
         zero_vector[object_rank] = 1
         object_dict[object] = zero_vector
-    # print(object_list)
-    # print(len(object_list))
-    # print('---------------------')
     object_to_vectors = []
     for object in objects:
         object_vec = sum(object_dict[o] for o in eval(object))
@@ -112,8 +109,6 @@ def split_vector(column_name='genres'):
 
 
 
-# print(count_items('genres'))
-
 
 # change to year====
 D_movies['year'] = pd.to_datetime(D_movies['release_date'], errors='coerce').apply(
@@ -130,12 +125,12 @@ fill_all_zero()
 
 
 # # change colums====
-word_to_vec('production_countries')
-D_movies = split_vector('production_countries')
-del D_movies['production_countries']
-word_to_vec('genres')
-D_movies = split_vector('genres')
-del D_movies['genres']
+# word_to_vec('production_countries')
+# D_movies = split_vector('production_countries')
+# del D_movies['production_countries']
+word_to_vec('keywords')
+D_movies = split_vector('keywords')
+# del D_movies['genres']
 
 for i in useless_columns:
     del D_movies[i]

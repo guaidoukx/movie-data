@@ -63,6 +63,8 @@ def comp_cos(I):
 del movie_data['director']
 del movie_data['keywords']
 del movie_data['year']
+del movie_data['production_countries']
+del movie_data['genres']
 
 train = movie_data
 train = train.drop('id', axis=1)
