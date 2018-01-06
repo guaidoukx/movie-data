@@ -12,6 +12,7 @@ def read_data(split):
     # imdb_score
     # df = pd.read_csv('4.csv')#original
 
+
     #changed===============
     df = pd.read_csv('input/one_hot_gc.csv')
     df = df.drop(['content_rating'], axis=1)
