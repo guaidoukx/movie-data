@@ -87,24 +87,24 @@ def plot_(pred, real):
 
 def main():
     print("------------------------------")
-    cmp_model_list = ['KNN']#, 'Lasso','Linear Regression', 'SVR', 'GBDT', 'KNN',
+    cmp_model_list = ['Linear Regression','SVR','GBDT','KNN','ETR']#, 'Lasso','Linear Regression', 'SVR', 'GBDT', 'KNN',
     print('start!')
     tran_test_split_ = 2200
     train_, test_ = read_data(tran_test_split_)
 
     print('read finish!')
 
-    # model_lr = LinearRegression()
-    # model_lr.fit(train_[0], train_[1])
-    # print('LinearRegression Training Finish')
-    #
-    # model_svr = SVR()
-    # model_svr.fit(train_[0], train_[1])
-    # print('SVR Training Finish')
-    #
-    # model_gbdt = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1)
-    # model_gbdt.fit(train_[0], train_[1])
-    # print('GBDT Training Finish')
+    model_lr = LinearRegression()
+    model_lr.fit(train_[0], train_[1])
+    print('LinearRegression Training Finish')
+
+    model_svr = SVR()
+    model_svr.fit(train_[0], train_[1])
+    print('SVR Training Finish')
+
+    model_gbdt = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1)
+    model_gbdt.fit(train_[0], train_[1])
+    print('GBDT Training Finish')
     #
     model_knn = neighbors.KNeighborsRegressor()
     model_knn.fit(train_[0], train_[1])
@@ -114,31 +114,31 @@ def main():
     # model_lasso.fit(train_[0], train_[1])
     # print('Lasso Training Finish')
 
-    # model_etr = ExtraTreesRegressor()
-    # model_etr.fit(train_[0], train_[1])
-    # print('ETR Training Finish')
+    model_etr = ExtraTreesRegressor()
+    model_etr.fit(train_[0], train_[1])
+    print('ETR Training Finish')
 
-    # lr_train_pred = model_lr.predict(train_[0])
-    # lr_test_pred = model_lr.predict(test_[0])
-    # svr_train_pred = model_svr.predict(train_[0])
-    # svr_test_pred = model_svr.predict(test_[0])
-    # gbdt_train_pred = model_gbdt.predict(train_[0])
-    # gbdt_test_pred = model_gbdt.predict(test_[0])
+    lr_train_pred = model_lr.predict(train_[0])
+    lr_test_pred = model_lr.predict(test_[0])
+    svr_train_pred = model_svr.predict(train_[0])
+    svr_test_pred = model_svr.predict(test_[0])
+    gbdt_train_pred = model_gbdt.predict(train_[0])
+    gbdt_test_pred = model_gbdt.predict(test_[0])
     knn_train_pred = model_knn.predict(train_[0])
     knn_test_pred = model_knn.predict(test_[0])
     # lasso_train_pred = model_lasso.predict(train_[0])
     # lasso_test_pred = model_lasso.predict(test_[0])
-    # etr_train_pred = model_etr.predict(train_[0])
-    # etr_test_pred = model_etr.predict(test_[0])
+    etr_train_pred = model_etr.predict(train_[0])
+    etr_test_pred = model_etr.predict(test_[0])
 
 
     for i, pred in enumerate([
-        # [lr_train_pred, lr_test_pred],
-        # [svr_train_pred, svr_test_pred],
-        # [gbdt_train_pred, gbdt_test_pred]
+        [lr_train_pred, lr_test_pred],
+        [svr_train_pred, svr_test_pred],
+        [gbdt_train_pred, gbdt_test_pred],
         [knn_train_pred, knn_test_pred],
         # [lasso_train_pred, lasso_test_pred],
-        # [etr_train_pred, etr_test_pred]
+        [etr_train_pred, etr_test_pred]
     ]):
         print("------------------------------")
         print("-Train-")
@@ -157,7 +157,7 @@ def main():
         print('Variance score: %.2f'
               % r2_score(test_[1], pred[1]))
     print("------------------------------")
-    plot_(knn_test_pred, test_[1])
+    # plot_(knn_test_pred, test_[1])
 
 
 

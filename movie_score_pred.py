@@ -13,7 +13,7 @@ def read_data(split):
     # df = pd.read_csv('4.csv')#original
 
     #changed===============
-    df = pd.read_csv('one_hot_g.csv')
+    df = pd.read_csv('input/one_hot_gc.csv')
     df = df.drop(['content_rating'], axis=1)
     # df = df.drop(['num_critic_for_reviews'], axis=1)
 
@@ -44,28 +44,28 @@ def read_data(split):
 
 def main():
     print("------------------------------")
-    cmp_model_list = ['ETR']#, 'Lasso','Linear Regression', 'SVR', 'GBDT', 'KNN',
+    cmp_model_list = ['Linear Regression','SVR','GBDT','KNN','ETR']#, 'Lasso',
     print('start!')
     tran_test_split_ = 4000
     train_, test_ = read_data(tran_test_split_)
 
     print('read finish!')
 
-    # model_lr = LinearRegression()
-    # model_lr.fit(train_[0], train_[1])
-    # print('LinearRegression Training Finish')
-    #
-    # model_svr = SVR()
-    # model_svr.fit(train_[0], train_[1])
-    # print('SVR Training Finish')
-    #
-    # model_gbdt = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1)
-    # model_gbdt.fit(train_[0], train_[1])
-    # print('GBDT Training Finish')
-    #
-    # model_knn = neighbors.KNeighborsRegressor()
-    # model_knn.fit(train_[0], train_[1])
-    # print('KNN Training Finish')
+    model_lr = LinearRegression()
+    model_lr.fit(train_[0], train_[1])
+    print('LinearRegression Training Finish')
+
+    model_svr = SVR()
+    model_svr.fit(train_[0], train_[1])
+    print('SVR Training Finish')
+
+    model_gbdt = GradientBoostingRegressor(n_estimators=100, learning_rate=0.1)
+    model_gbdt.fit(train_[0], train_[1])
+    print('GBDT Training Finish')
+
+    model_knn = neighbors.KNeighborsRegressor()
+    model_knn.fit(train_[0], train_[1])
+    print('KNN Training Finish')
 
     # model_lasso = Lasso()
     # model_lasso.fit(train_[0], train_[1])
@@ -75,14 +75,14 @@ def main():
     model_etr.fit(train_[0], train_[1])
     print('ETR Training Finish')
 
-    # lr_train_pred = model_lr.predict(train_[0])
-    # lr_test_pred = model_lr.predict(test_[0])
-    # svr_train_pred = model_svr.predict(train_[0])
-    # svr_test_pred = model_svr.predict(test_[0])
-    # gbdt_train_pred = model_gbdt.predict(train_[0])
-    # gbdt_test_pred = model_gbdt.predict(test_[0])
-    # knn_train_pred = model_knn.predict(train_[0])
-    # knn_test_pred = model_knn.predict(test_[0])
+    lr_train_pred = model_lr.predict(train_[0])
+    lr_test_pred = model_lr.predict(test_[0])
+    svr_train_pred = model_svr.predict(train_[0])
+    svr_test_pred = model_svr.predict(test_[0])
+    gbdt_train_pred = model_gbdt.predict(train_[0])
+    gbdt_test_pred = model_gbdt.predict(test_[0])
+    knn_train_pred = model_knn.predict(train_[0])
+    knn_test_pred = model_knn.predict(test_[0])
     # lasso_train_pred = model_lasso.predict(train_[0])
     # lasso_test_pred = model_lasso.predict(test_[0])
     etr_train_pred = model_etr.predict(train_[0])
@@ -90,10 +90,10 @@ def main():
 
 
     for i, pred in enumerate([
-        # [lr_train_pred, lr_test_pred],
-        # [svr_train_pred, svr_test_pred],
-        # [gbdt_train_pred, gbdt_test_pred],
-        # [knn_train_pred, knn_test_pred],
+        [lr_train_pred, lr_test_pred],
+        [svr_train_pred, svr_test_pred],
+        [gbdt_train_pred, gbdt_test_pred],
+        [knn_train_pred, knn_test_pred],
         # [lasso_train_pred, lasso_test_pred],
         [etr_train_pred, etr_test_pred]
     ]):

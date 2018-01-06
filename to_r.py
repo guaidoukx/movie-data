@@ -27,8 +27,8 @@ def to_one(object_name):
 for a in L1:
     to_log(a)
 #
-for a in L2:
-    to_one(a)
+# for a in L2:
+#     to_one(a)
 
 
 
@@ -59,12 +59,18 @@ def comp_cos(I):
         L.append(cos(input_, train.iloc[ind]))
     train['cos'] =L
 
+# print(movie_data)
+# for i in range(len(movie_data)):
+#     if movie_data['director'][i] == 'James Cameron':
+#         print(movie_data['vote_average'][i])  #, movie_data['vote_average'][i]
+
+
 
 del movie_data['director']
 del movie_data['keywords']
 del movie_data['year']
-del movie_data['production_countries']
-del movie_data['genres']
+# # del movie_data['production_countries']
+# # del movie_data['genres']
 
 train = movie_data
 train = train.drop('id', axis=1)
@@ -83,5 +89,5 @@ def out_():
         print(i, movie_data['title'][i])
 
 print('input:')
-comp_cos(16)
+comp_cos(0)
 out_()
